@@ -28,7 +28,6 @@ def VDP_Oscillator_derivative(x, t,mu):
 	nx0 = x[1]
 	nx1 = -mu * (x[0] ** 2.0 - 1.0) * x[1] - x[0]
 	res = np.array([nx0, nx1,x[0]])
-	
 	return res
 
 ts = np.linspace(0.0, 50.0, 5000.0)
@@ -60,6 +59,6 @@ plt.close()
 
 anim = animation.FuncAnimation(fig, update, len(xs[0]),init_func = init, fargs=[xs, lines],interval=1, blit=True)
 
-plt.show()
+#plt.show()
 
 
