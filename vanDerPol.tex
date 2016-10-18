@@ -1,0 +1,58 @@
+\documentclass[10pt]{beamer}
+\usetheme{Bergen}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{Van der Pol Oscillator}
+\subtitle{AE 425 Project}
+\institute{Indian Institute of Technology Bombay}
+\date{\today}
+\author{Abhilash Kulkarni}
+
+\begin{document}
+
+	\begin{frame}[plain]
+		\maketitle
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Table of Contents}
+		\tableofcontents 
+	\end{frame}
+
+	\section{Introduction}
+		\begin{frame}
+			\frametitle{Introduction}
+			The Van der Pol oscillator is a non-conservative oscillator with non-linear damping. The oscillator is defined by the following second-order differential equation:
+
+			\begin{equation}
+			\frac{d^2x}{dt^2} - \mu(1 - x^2)\frac{dx}{dt} + x = 0
+			\end{equation}
+
+			where x is the position coordinate which is a function of the time t, and μ is a scalar parameter indicating the nonlinearity and the strength of the damping.
+		\end{frame}
+	\section{Two-dimensional form}
+		\begin{frame}
+		\frametitle{Two-dimensional form}
+		\textbf{Liénard's theorem} is used to prove that the van der Pol Oscillator has a limit cycle. Applying the Liénard transformation: $y = x - x^3/3 - \frac{\dot{x}}{\mu}$, the Van der Pol oscillator can be written in its two-dimensional form:
+		\begin{equation}
+		\dot{x} = \mu(x - \frac{1}{3}x^3 - y)
+		\end{equation}
+		\begin{equation}
+		\dot{y} = \frac{1}{\mu}x
+		\end{equation}
+		Another form which is used is based on the transformation $y = \dot{x}$:
+		\begin{equation}
+		\dot{x} = y
+		\end{equation}
+		\begin{equation}
+		\dot{y} = \mu(1 - x^2)y - x
+		\end{equation}
+		\end{frame}
+\pagebreak
+\begin{frame}
+
+\end{frame}
+\end{document}

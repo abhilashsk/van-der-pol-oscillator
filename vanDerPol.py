@@ -54,7 +54,7 @@ plt.title('State Variables vs Time (mu = 0.5)', fontsize = 24)
 ax2.plot(xs[1][1000:,0],label = "x1")
 ax2.plot(xs[1][1000:,1],label = "x2")
 plt.legend(loc="upper right")
-plt.savefig("a.png")
+plt.savefig("vanDerPol_state_space.png")
 plt.close()
 
 
