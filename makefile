@@ -15,6 +15,9 @@ pdf : $(FILES:.pdf=.tex)
 
 %.pdf: %.tex 
 	pdflatex $<
+	bibtex `echo $< |cut -d "." -f1`.aux
+	pdflatex $<
+	pdflatex $<
 
 clean:	 
 	$(RM) $(AUXFILES) $(LOGFILES) $(BBLFILES) $(BLGFILES) $(OTHERS) $(PICS) $(PYC)
