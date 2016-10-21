@@ -1,10 +1,11 @@
 import numpy as np 
+import matplotlib
+matplotlib.use('Agg')
 from matplotlib import pyplot as plt 
 from matplotlib import animation
 from scipy.integrate import odeint
 
 fig = plt.figure()
-
 ax = plt.axes(xlim = (-5,5), ylim = (-5,5))
 ax.set_xticks(np.arange(-5,5,1))
 ax.set_yticks(np.arange(-5,5,1))
@@ -53,11 +54,14 @@ plt.title('State Variables vs Time (mu = 0.5)', fontsize = 24)
 ax2.plot(xs[1][1000:,0],label = "x1")
 ax2.plot(xs[1][1000:,1],label = "x2")
 plt.legend(loc="upper right")
-plt.savefig("vanDerPol_state_space.png")
+plt.savefig("../output/vanDerPol_state_space.png")
 plt.close()
 
 
 anim = animation.FuncAnimation(fig, update, len(xs[0]),init_func = init, fargs=[xs, lines],interval=1, blit=True)
+#anim.save('/output/vanDerPol.gif', writer='imagemagick', fps=30)
+
+#anim.save('output/vanDerPol.mp4', writer = FFwriter,fps=5, extra_args=['-vcodec', 'libx264'])
 
 #plt.show()
 
