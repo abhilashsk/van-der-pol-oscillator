@@ -10,6 +10,7 @@ PYC := $(wildcard *.pyc)
 main : vanDerPol.py
 	python vanDerPol.py
 	make pdf
+	python html.py
 
 pdf : $(FILES:.pdf=.tex)
 	make 130010006.pdf

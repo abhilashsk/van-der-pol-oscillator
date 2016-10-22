@@ -84,7 +84,8 @@ plt.close()
 
 anim = animation.FuncAnimation(fig, update, len(xs[0]),init_func = init, fargs=[xs, lines],interval=1, blit=True)
 
-#anim.save('../output/130010006.mp4', writer = FFwriter,fps=100, extra_args=['-vcodec', 'libx264'])
+anim.save('../output/130010006.mp4', writer = FFwriter,fps=100, extra_args=['-vcodec', 'libx264'])
+print("Please wait.. generating animation takes upto 20 minutes")
 #plt.show()
 
 
