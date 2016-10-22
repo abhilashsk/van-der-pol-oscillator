@@ -4,7 +4,7 @@ LOGFILES := $(FILES:.pdf=.log)
 BBLFILES := $(FILES:.pdf=.bbl)
 BLGFILES := $(FILES:.pdf=.blg)
 
-OTHERS := 130010006.nav 130010006.out 130010006.snm 130010006.toc 130010006.nav
+OTHERS := 130010006.nav 130010006.out 130010006.snm 130010006.toc 130010006.nav 
 PICS := $(wildcard *.png)
 PYC := $(wildcard *.pyc)
 main : vanDerPol.py
@@ -21,6 +21,10 @@ pdf : $(FILES:.pdf=.tex)
 	pdflatex $<
 	mv 130010006.pdf ../output/130010006.pdf
 
+test : tests.py
+	python tests.py
+	
 clean:	 
 	$(RM) $(AUXFILES) $(LOGFILES) $(BBLFILES) $(BLGFILES) $(OTHERS) $(PICS) $(PYC)
+	rm -rf __pycache__
 	

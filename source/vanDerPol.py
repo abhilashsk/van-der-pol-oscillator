@@ -26,22 +26,23 @@ def init():
 def VDP_Oscillator_derivative(x, t,mu):
 	nx0 = x[1]
 	nx1 = -mu * (x[0] ** 2.0 - 1.0) * x[1] - x[0]
-	res = np.array([nx0, nx1,x[0]])
+	res = np.array([nx0, nx1])
 	return res
 
-ts = np.linspace(0.0, 50.0, 5000.0)
-xs = [odeint(VDP_Oscillator_derivative, [-3.0, -3.0,1.0], ts, args = (3,)),odeint(VDP_Oscillator_derivative, [0.2, 0.0,0.0], ts, args = (0.6,))]
+def integrate(f, ts, x0, mu):
+	return odeint(f, x0, ts, args = mu)
 
+ts = np.linspace(0.0, 50.0, 5000.0)
+xs = [integrate(VDP_Oscillator_derivative,ts,[-3.0,-3.0],(3,)),integrate(VDP_Oscillator_derivative,ts,[0.2, 0.0],(0.6,))]
 
 def update(num,xs,lines):
 	j = 0
-
 	for line in lines:
 		line.set_data(xs[j][:num,0], xs[j][:num,1])
 		j = j + 1
 	return lines
 
-xs2 = odeint(VDP_Oscillator_derivative, [-3.0, -3.0,1.0], ts, args = (0.5,))
+xs2 = integrate(VDP_Oscillator_derivative,ts, [-3.0, -3.0],(0.5,))
 fig2 = plt.figure()
 plt.grid()
 ax2 = fig2.add_subplot(111)
@@ -56,7 +57,7 @@ plt.savefig("vanDerPol_state_space.png")
 plt.close()
 plt.grid()
 
-xs3 = odeint(VDP_Oscillator_derivative, [-3.0, -3.0,1.0], ts, args = (0.01,))
+xs3 = integrate(VDP_Oscillator_derivative,ts,[-3.0, -3.0],(0.01,))
 fig3 = plt.figure()
 plt.grid()
 ax3 = fig3.add_subplot(111)
@@ -69,7 +70,7 @@ plt.savefig("vanDerPol_phase_1.png")
 plt.close()
 plt.grid()
 
-xs4 = odeint(VDP_Oscillator_derivative, [-3.0, -3.0,1.0], ts, args = (2.0,))
+xs4 = integrate(VDP_Oscillator_derivative,ts, [-3.0, -3.0],(2.0,))
 fig4 = plt.figure()
 plt.grid()
 ax4 = fig4.add_subplot(111)
@@ -83,8 +84,7 @@ plt.close()
 
 anim = animation.FuncAnimation(fig, update, len(xs[0]),init_func = init, fargs=[xs, lines],interval=1, blit=True)
 
-#anim.save('../output/vanDerPol.mp4', writer = FFwriter,fps=5, extra_args=['-vcodec', 'libx264'])
-
+#anim.save('../output/130010006.mp4', writer = FFwriter,fps=100, extra_args=['-vcodec', 'libx264'])
 #plt.show()
 
 

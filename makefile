@@ -5,4 +5,7 @@ main:
 clean:
 	rm -rf output
 	cd source; make clean
+
+test:
+	cd source; make test
 	
