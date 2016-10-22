@@ -52,8 +52,33 @@
 		\end{equation}
 		\end{frame}
 \pagebreak
+
 \begin{frame}
-The system is not volume-preserving except when $\mu = 0$\cite{cornell}. If $\mu = 0$, then the equation becomes $\ddot{x} + x = 0$, the simple harmonic oscillator, which is conservative. We formalize our analysis with some definitions.
+The system is not volume-preserving except when $\mu = 0$\cite{cornell}. If $\mu = 0$, then the equation becomes $\ddot{x} + x = 0$, the simple harmonic oscillator, which is conservative. 
+\linebreak
+The general van der Pol oscillator has exactly one limit cycle and all other trajectories spiral into it. All other trajectories will approach this limit cycle.
+\linebreak
+The following plots show the phase plot for $\mu = 0.01$ and $\mu = 2$.
+\begin{figure}[h]
+	\begin{tabular} {l c}
+	\includegraphics[width=0.5\textwidth, height=0.5\textheight]{vanDerPol_phase_1.png} &
+	\includegraphics[width=0.5\textwidth, height=0.5\textheight]{vanDerPol_phase_2.png} 
+	\end{tabular}
+\end{figure}
+\label{fig2}
+
+\end{frame}
+\pagebreak
+\begin{frame}
+The first plot (for $\mu = 0.01$) shows how for low values of $\mu$ the phase plot is a circle, meaning that
+the van Der Pol oscillator tends to a simple harmonic oscillator
+\linebreak
+\linebreak
+The following plot shows the state space variables $x1 = \dot{x}$ and $x2 = \ddot{x}$ against time:
+
+ \begin{figure}[h]
+	\includegraphics[width=1.0\textwidth, height=0.5\textheight]{vanDerPol_state_space.png} 
+\end{figure}
 \end{frame}
 
 \bibliography{bib_file}{}

@@ -1,6 +1,5 @@
 import numpy as np 
 import matplotlib
-matplotlib.use('Agg')
 from matplotlib import pyplot as plt 
 from matplotlib import animation
 from scipy.integrate import odeint
@@ -25,7 +24,6 @@ def init():
 	return lines
 
 def VDP_Oscillator_derivative(x, t,mu):
-	global a
 	nx0 = x[1]
 	nx1 = -mu * (x[0] ** 2.0 - 1.0) * x[1] - x[0]
 	res = np.array([nx0, nx1,x[0]])
@@ -33,7 +31,6 @@ def VDP_Oscillator_derivative(x, t,mu):
 
 ts = np.linspace(0.0, 50.0, 5000.0)
 xs = [odeint(VDP_Oscillator_derivative, [-3.0, -3.0,1.0], ts, args = (3,)),odeint(VDP_Oscillator_derivative, [0.2, 0.0,0.0], ts, args = (0.6,))]
-
 
 
 def update(num,xs,lines):
@@ -46,22 +43,47 @@ def update(num,xs,lines):
 
 xs2 = odeint(VDP_Oscillator_derivative, [-3.0, -3.0,1.0], ts, args = (0.5,))
 fig2 = plt.figure()
+plt.grid()
 ax2 = fig2.add_subplot(111)
 ax2.set_ylim([-3.0,3.0])
 plt.xlabel('Time Coordinate', fontsize=18)
 plt.ylabel('Variable Value', fontsize=18)
 plt.title('State Variables vs Time (mu = 0.5)', fontsize = 24)
-ax2.plot(xs[1][1000:,0],label = "x1")
-ax2.plot(xs[1][1000:,1],label = "x2")
+ax2.plot(xs2[1000:,0],label = "x1")
+ax2.plot(xs2[1000:,1],label = "x2")
 plt.legend(loc="upper right")
-plt.savefig("../output/vanDerPol_state_space.png")
+plt.savefig("vanDerPol_state_space.png")
+plt.close()
+plt.grid()
+
+xs3 = odeint(VDP_Oscillator_derivative, [-3.0, -3.0,1.0], ts, args = (0.01,))
+fig3 = plt.figure()
+plt.grid()
+ax3 = fig3.add_subplot(111)
+ax3.set_ylim([-5.0,5.0])
+plt.xlabel('X', fontsize=18)
+plt.ylabel('Y', fontsize=18)
+plt.title('Phase plot for mu = 0.01', fontsize = 24)
+ax3.plot(xs3[:,0],xs3[:,1])
+plt.savefig("vanDerPol_phase_1.png")
+plt.close()
+plt.grid()
+
+xs4 = odeint(VDP_Oscillator_derivative, [-3.0, -3.0,1.0], ts, args = (2.0,))
+fig4 = plt.figure()
+plt.grid()
+ax4 = fig4.add_subplot(111)
+ax4.set_ylim([-5.0,5.0])
+plt.xlabel('X', fontsize=18)
+plt.ylabel('Y', fontsize=18)
+plt.title('Phase plot for mu = 2', fontsize = 24)
+ax4.plot(xs4[:,0],xs4[:,1])
+plt.savefig("vanDerPol_phase_2.png")
 plt.close()
 
-
 anim = animation.FuncAnimation(fig, update, len(xs[0]),init_func = init, fargs=[xs, lines],interval=1, blit=True)
-#anim.save('/output/vanDerPol.gif', writer='imagemagick', fps=30)
 
-#anim.save('output/vanDerPol.mp4', writer = FFwriter,fps=5, extra_args=['-vcodec', 'libx264'])
+#anim.save('../output/vanDerPol.mp4', writer = FFwriter,fps=5, extra_args=['-vcodec', 'libx264'])
 
 #plt.show()
 
